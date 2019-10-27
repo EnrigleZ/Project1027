@@ -5,6 +5,7 @@ from PIL import Image, ImageWin
 
 def print_file(file_name):
     # return True
+    print('printing: ', file_name)
 
     try:
         # 常数变量设置

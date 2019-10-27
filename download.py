@@ -67,6 +67,8 @@ def fetch_once():
 
             # 下载新文件，如果下载失败返回 False
             new_file_path = download(task)
+            log_list.append(task.get('key'))
+            save_log(log_list)
             if new_file_path:
 
                 # 交给下游任务打印，如果打印失败返回 False
@@ -83,9 +85,9 @@ def fetch_once():
             # 打印完之后更新状态，保存本地记录
             if printed_successfully_flag:
                 update_status(task.get('key'), 2)
-                log_list.append(task.get('key'))
             else:
                 update_status(task.get('key'), -1)
+                log_list.remove(task.get('key'))
 
             save_log(log_list)
             print('-----------------------------')
